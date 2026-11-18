@@ -1,0 +1,145 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Service Request',
+    typeNamePlural: 'Service Requests',
+    title: {
+      type: #STANDARD,
+      value: 'Title'
+    },
+    description: {
+      type: #STANDARD,
+      value: 'RequestId'
+    }
+  }
+}
+
+annotate entity ZC_SF_REQUEST with
+{
+  /* ========================================================
+     OBJECT PAGE FACETS
+     ======================================================== */
+  @UI.facet: [
+    {
+      id:              'GeneralInformation',
+      label:           'General Information',
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'GeneralInfo',
+      purpose:         #STANDARD,
+      position:        10
+    },
+    {
+      id:              'RequesterInformation',
+      label:           'Requester Information',
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'RequesterInfo',
+      purpose:         #STANDARD,
+      position:        20
+    },
+    {
+      id:              'AssignmentDates',
+      label:           'Assignment & Dates',
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'AssignmentInfo',
+      purpose:         #STANDARD,
+      position:        30
+    },
+    {
+      id:              'HistorySection',
+      label:           'Request History',
+      type:            #LINEITEM_REFERENCE,
+      targetElement:   '_History',
+      purpose:         #STANDARD,
+      position:        40
+    }
+  ]
+
+  /* ========================================================
+     FIELDS & ACTIONS
+     ======================================================== */
+
+  @UI.lineItem: [
+    { position: 10, importance: #HIGH },
+    { type: #FOR_ACTION, dataAction: 'AssignRequest',    label: 'Assign',     position: 170 },
+    { type: #FOR_ACTION, dataAction: 'StartProcessing',  label: 'Start',      position: 180 },
+    { type: #FOR_ACTION, dataAction: 'ResolveRequest',   label: 'Resolve',    position: 190 },
+    { type: #FOR_ACTION, dataAction: 'VerifyRequest',    label: 'Verify',     position: 200 },
+    { type: #FOR_ACTION, dataAction: 'ReopenRequest',    label: 'Reopen',     position: 210 },
+    { type: #FOR_ACTION, dataAction: 'CloseRequest',     label: 'Close',      position: 220 },
+    { type: #FOR_ACTION, dataAction: 'EscalateRequest',  label: 'Escalate',   position: 230 }
+  ]
+  @UI.identification: [
+    { position: 10 },
+    { type: #FOR_ACTION, dataAction: 'AssignRequest',    label: 'Assign',     position: 10 },
+    { type: #FOR_ACTION, dataAction: 'StartProcessing',  label: 'Start',      position: 20 },
+    { type: #FOR_ACTION, dataAction: 'ResolveRequest',   label: 'Resolve',    position: 30 },
+    { type: #FOR_ACTION, dataAction: 'VerifyRequest',    label: 'Verify',     position: 40 },
+    { type: #FOR_ACTION, dataAction: 'ReopenRequest',    label: 'Reopen',     position: 50 },
+    { type: #FOR_ACTION, dataAction: 'CloseRequest',     label: 'Close',      position: 60 },
+    { type: #FOR_ACTION, dataAction: 'EscalateRequest',  label: 'Escalate',   position: 70 }
+  ]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 10, label: 'Request ID' }]
+  RequestId;
+
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 20, label: 'Title' }]
+  Title;
+
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 30, label: 'Category' }]
+  CategoryId;
+
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 40, label: 'Priority' }]
+  Priority;
+
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 50, label: 'Status' }]
+  Status;
+
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 60, label: 'Description' }]
+  Description;
+
+  @UI.lineItem: [{ position: 60, importance: #MEDIUM }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 70, label: 'Target Date' }]
+  TargetDate;
+
+  // --- Requester Information ---
+
+  @UI.fieldGroup: [{ qualifier: 'RequesterInfo', position: 10, label: 'Requester ID' }]
+  RequesterId;
+
+  @UI.fieldGroup: [{ qualifier: 'RequesterInfo', position: 20, label: 'Requester Name' }]
+  RequesterName;
+
+  @UI.fieldGroup: [{ qualifier: 'RequesterInfo', position: 30, label: 'Department' }]
+  Department;
+
+  @UI.fieldGroup: [{ qualifier: 'RequesterInfo', position: 40, label: 'Location' }]
+  Location;
+
+  // --- Assignment & Dates ---
+
+  @UI.lineItem: [{ position: 70, importance: #MEDIUM }]
+  @UI.fieldGroup: [{ qualifier: 'AssignmentInfo', position: 10, label: 'Team' }]
+  TeamId;
+
+  @UI.lineItem: [{ position: 80, importance: #MEDIUM }]
+  @UI.fieldGroup: [{ qualifier: 'AssignmentInfo', position: 20, label: 'Agent' }]
+  AgentId;
+
+  @UI.fieldGroup: [{ qualifier: 'AssignmentInfo', position: 30, label: 'Resolved Date' }]
+  ResolvedDate;
+
+  @UI.fieldGroup: [{ qualifier: 'AssignmentInfo', position: 40, label: 'Verified Date' }]
+  VerifiedDate;
+
+  @UI.fieldGroup: [{ qualifier: 'AssignmentInfo', position: 50, label: 'Closed Date' }]
+  ClosedDate;
+}

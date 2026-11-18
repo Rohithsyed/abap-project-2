@@ -1,0 +1,10 @@
+@EndUserText.label: 'ServiceFlow UI Service'
+define service ZUI_SF_SERVICE {
+  expose ZC_SF_REQUEST  as ServiceRequest;
+  expose ZC_SF_CATEGORY as Category;
+  expose ZC_SF_TEAM     as Team;
+  expose ZC_SF_AGENT    as Agent;
+  expose ZC_SF_SLA      as SLA;
+  expose ZC_SF_UPDATE   as RequestUpdate;
+  expose ZC_SF_HISTORY  as RequestHistory;
+}
